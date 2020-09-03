@@ -5,6 +5,7 @@ const path = require(`path`);
 const exphbs = require(`express-handlebars`);
 const session = require(`express-session`);
 const SequelizeStore = require(`connect-session-sequelize`)(session.Store);
+const helpers = require(`./utils/helpers`);
 
 const sess = {
     secret: `what a time to be alive`,
@@ -17,7 +18,7 @@ const sess = {
 };
 
 const app = express();
-const hbs = exphbs.create({});
+const hbs = exphbs.create({ helpers });
 const PORT = process.env.PORT || 3001;
 
 app.engine(`handlebars`, hbs.engine);
